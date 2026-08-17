@@ -1,75 +1,59 @@
-# React + TypeScript + Vite
+# REST Countries
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Solución al challenge [REST Countries API with color theme switcher](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca) de [Frontend Mentor](https://www.frontendmentor.io).
 
-Currently, two official plugins are available:
+App para explorar países: listado con búsqueda y filtro por región, página de detalle y cambio entre tema claro y oscuro.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## El challenge
 
-## React Compiler
+Integrar datos de países (REST Countries) y mostrarlos según el diseño. Los usuarios deben poder:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Ver todos los países en la página principal
+- Buscar un país por nombre
+- Filtrar países por región
+- Entrar a una página de detalle al hacer clic en un país
+- Navegar a los países fronterizos desde el detalle
+- Alternar entre modo claro y oscuro
 
-## Expanding the ESLint configuration
+En el detalle se muestra bandera, nombre nativo, población, región, subregión, capital, dominio de nivel superior, monedas, idiomas y fronteras.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- [React](https://react.dev/) 19 + [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vite.dev/)
+- [React Router](https://reactrouter.com/)
+- [Tailwind CSS](https://tailwindcss.com/) 4
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Los datos salen de `src/data/countries.json` (dataset del challenge), no de la API en vivo.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Cómo ejecutarlo
 
+Necesitas Node.js y npm.
+
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Otras comandos:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm run build    # producción
+npm run preview  # vista previa del build
+npm run lint
 ```
+
+## Rutas
+
+| Ruta | Vista |
+| --- | --- |
+| `/` | Listado, búsqueda y filtro |
+| `/country/:code` | Detalle (`code` = alpha-3, p. ej. `MEX`) |
+
+El tema se guarda en `localStorage`. Si no hay preferencia, se usa la del sistema.
+
+## Autor
+
+Coded by Alejandro González Osorio.
+
+Challenge by [Frontend Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca).
