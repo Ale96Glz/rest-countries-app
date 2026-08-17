@@ -1,14 +1,9 @@
 export type Currency = {
-  code?: string
   name: string
-  symbol?: string
 }
 
 export type Language = {
-  iso639_1?: string
-  iso639_2?: string
   name: string
-  nativeName?: string
 }
 
 export type Country = {
@@ -23,9 +18,5 @@ export type Country = {
   languages?: Language[]
   borders?: string[]
   flag: string
-  flags?: {
-    svg: string
-    png: string
-  }
   alpha3Code: string
 }

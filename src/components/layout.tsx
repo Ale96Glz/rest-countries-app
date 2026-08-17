@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useLocation } from 'react-router-dom'
 
 function getInitialDark() {
   const saved = localStorage.getItem('theme')
@@ -10,11 +10,16 @@ function getInitialDark() {
 
 export default function Layout() {
   const [dark, setDark] = useState(getInitialDark)
+  const { pathname } = useLocation()
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', dark)
     localStorage.setItem('theme', dark ? 'dark' : 'light')
   }, [dark])
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-background font-bold text-foreground">

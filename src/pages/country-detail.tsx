@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { countries, getCountryByCode } from '../data/countries'
 
@@ -13,6 +14,12 @@ function DetailItem({ label, value }: { label: string; value: string }) {
 export default function CountryDetail() {
   const { code } = useParams()
   const country = code ? getCountryByCode(code) : undefined
+
+  useEffect(() => {
+    document.title = country
+      ? `${country.name} | Where in the world?`
+      : 'Country not found | Where in the world?'
+  }, [country])
 
   if (!country) {
     return (

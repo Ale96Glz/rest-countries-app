@@ -14,7 +14,7 @@ export default function Card({ code, name, population, region, capital, flag }: 
     <Link to={`/country/${code}`} className="block h-full">
       <article className="flex h-full w-full flex-col overflow-hidden rounded-md bg-elements text-foreground shadow-md">
         <div className="relative aspect-16/10 w-full shrink-0 overflow-hidden">
-          <img src={flag} alt={`Bandera de ${name}`} className="absolute inset-0 h-full w-full object-cover" />
+          <img src={flag} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
         </div>
         <div className="flex flex-1 flex-col justify-center gap-4 p-8">
           <h2 className="text-lg font-extrabold">{name}</h2>

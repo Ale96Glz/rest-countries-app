@@ -1,10 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Card from '../components/card'
 import { countries } from '../data/countries'
+
+const focusRing = 'outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground'
 
 export default function Home() {
   const [search, setSearch] = useState('')
   const [region, setRegion] = useState('all')
+
+  useEffect(() => {
+    document.title = 'Where in the world?'
+  }, [])
 
   const query = search.trim().toLowerCase()
 
@@ -17,13 +23,15 @@ export default function Home() {
 
   return (
     <>
+      <h1 className="sr-only">Countries of the world</h1>
       <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between md:gap-12">
         <input
           type="search"
           value={search}
           onChange={(event) => setSearch(event.target.value)}
           placeholder="Search for a country..."
-          className="w-full rounded-md border-none bg-elements px-6 py-4 text-foreground shadow-md outline-none placeholder:text-input md:max-w-md"
+          aria-label="Search for a country"
+          className={`w-full rounded-md border-none bg-elements px-6 py-4 text-foreground shadow-md placeholder:text-input md:max-w-md ${focusRing}`}
         />
         <div className="relative w-full max-w-[15.5rem] shrink-0 md:w-60">
           <select
@@ -31,7 +39,8 @@ export default function Home() {
             id="region"
             value={region}
             onChange={(event) => setRegion(event.target.value)}
-            className="w-full cursor-pointer appearance-none rounded-md border-none bg-elements py-4 pl-6 pr-14 text-foreground shadow-md outline-none"
+            aria-label="Filter by region"
+            className={`w-full cursor-pointer appearance-none rounded-md border-none bg-elements py-4 pl-6 pr-14 text-foreground shadow-md ${focusRing}`}
           >
             <option value="all">All Regions</option>
             <option value="africa">Africa</option>
