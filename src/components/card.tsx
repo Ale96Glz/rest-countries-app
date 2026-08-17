@@ -8,7 +8,7 @@ type CardProps = {
 
 export default function Card({ name, population, region, capital, flag }: CardProps) {
   return (
-    <article className="flex h-full w-full flex-col overflow-hidden rounded-md bg-blue-900 shadow-md">
+    <article className="flex h-full w-full flex-col overflow-hidden rounded-md bg-elements text-foreground shadow-md">
       <div className="relative aspect-16/10 w-full shrink-0 overflow-hidden">
         <img src={flag} alt={`Bandera de ${name}`} className="absolute inset-0 h-full w-full object-cover" />
       </div>
